@@ -1,0 +1,67 @@
+/* =================== TEMPLATE ================== */
+.todo-management-app {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.todo-management-app table.layout {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.todo-management-app table.layout thead th.header div.main-header {
+    height: 60px !important;
+    background: black !important;
+}
+
+.todo-management-app table.layout thead th.header div.navigation-bar nav {
+    height: 50px !important;
+}
+
+.todo-management-app table.layout tbody td.body {
+    height: 100% !important;
+    vertical-align: top !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-flow: column !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.todo-management-app table.layout tfoot td.footer {
+    height: 40px !important;
+    background: black !important;
+}
+
+.todo-management-app table.layout thead th.header div.main-header header,
+.todo-management-app table.layout thead th.header div.main-header header nav {
+    height: 100% !important;
+}
+
+.todo-management-app table.layout th,
+.todo-management-app table.layout td {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* =================== OTHER ================== */
+
+div.footer-content {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: black !important;
+    height: 100% !important;
+}
+
+button.btn-dark {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    background-color: black !important;
+}
+
+button.btn-dark:hover {
+    background-color: rgba(0, 0, 0, 0.76) !important;
+}
