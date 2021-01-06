@@ -10,7 +10,7 @@ class Header extends Component {
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark">
                     <div>
-                        <a href="/todos" className="navbar-brand">TODO MANAGEMENT APP</a>
+                        <a href="/todos" className="navbar-brand">TODO MANAGEMENT</a>
                     </div>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
                         {!isUserLoggedIn && <li> <Link to="/login" className="nav-link" > Login </Link> </li>}
