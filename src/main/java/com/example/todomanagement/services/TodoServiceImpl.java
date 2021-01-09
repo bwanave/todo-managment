@@ -1,34 +1,41 @@
 package com.example.todomanagement.services;
 
-import com.example.todomanagement.models.Todo;
+import com.example.todomanagement.jpa.entities.Todo;
+import com.example.todomanagement.jpa.repositories.TodoRepository;
+import com.example.todomanagement.models.TodoModel;
+import com.example.todomanagement.models.UserModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TodoServiceImpl implements TodoService {
 
-    private static final List<Todo> TODOS;
+    private final TodoRepository todoRepository;
 
-    static {
-        TODOS = new ArrayList<>();
-        TODOS.add(new Todo(1, "Learn Springboot", LocalDate.now().plusDays(5)));
-        TODOS.add(new Todo(2, "Learn React", LocalDate.now().plusDays(10)));
-        TODOS.add(new Todo(3, "Learn Python", LocalDate.now().plusDays(15)));
+    @Autowired
+    public TodoServiceImpl(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
     }
 
     @Override
-    public List<Todo> getAllTodos() {
-        return TODOS;
+    public List<TodoModel> getAllTodos(UserModel userModel) {
+        return todoRepository.findAllByUser_id(userModel.getId())
+                .stream()
+                .map(Todo::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Todo getTodo(long id) {
-        return TODOS.stream()
+    public Optional<TodoModel> getTodo(long id, UserModel userModel) {
+        return todoRepository.findByIdAndUser_id(id, userModel.getId())
+                .stream()
+                .filter(todo -> todo.getUser().getId() == userModel.getId())
                 .filter(todo -> todo.getId() == id)
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Invalid id: " + id));
+                .map(Todo::toModel)
+                .findFirst();
     }
 }

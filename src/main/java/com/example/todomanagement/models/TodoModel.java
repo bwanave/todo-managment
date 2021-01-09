@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Todo {
+public class TodoModel {
 
     private long id;
     private String description;
