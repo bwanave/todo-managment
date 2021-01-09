@@ -1,2 +1,1 @@
-# todo-managment
-Todo management application
+# Todo management application
