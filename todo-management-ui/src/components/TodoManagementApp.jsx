@@ -11,6 +11,7 @@ import Todos from './todo/Todos';
 import Error404 from './Error404';
 import Logout from './Logout';
 import ReactRoute from './Routes/ReactRoute';
+import Todo from './todo/Todo';
 
 // Preload required icons
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -35,12 +36,13 @@ class TodoManagementApp extends Component {
                             <tr>
                                 <td className="body">
                                     <Switch>
-                                        <ReactRoute path="/" exact component={Login} isAuthenticationRequired={false} />
-                                        <ReactRoute path="/login" exact component={Login} isAuthenticationRequired={false} />
-                                        <ReactRoute path="/home/:name" exact component={Home} isAuthenticationRequired={true} />
-                                        <ReactRoute path="/todos" exact component={Todos} isAuthenticationRequired={true} />
-                                        <ReactRoute path="/logout" exact component={Logout} isAuthenticationRequired={false} />
-                                        <ReactRoute component={Error404} isAuthenticationRequired={false} />
+                                        <ReactRoute path="/" exact component={Login} authenticationRequired={false} />
+                                        <ReactRoute path="/login" exact component={Login} authenticationRequired={false} />
+                                        <ReactRoute path="/home/:name" exact component={Home} authenticationRequired={true} />
+                                        <ReactRoute path="/todos/:id" exact component={Todo} authenticationRequired={true} />
+                                        <ReactRoute path="/todos" exact component={Todos} authenticationRequired={true} />
+                                        <ReactRoute path="/logout" exact component={Logout} authenticationRequired={false} />
+                                        <ReactRoute component={Error404} authenticationRequired={false} />
                                     </Switch>
                                 </td>
                             </tr>
