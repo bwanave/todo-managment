@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.example.todomanagement.jpa.specifications.TodoSpecifications.hasUser;
+
 @Service
 public class TodoServiceImpl implements TodoService {
 
@@ -28,7 +30,7 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public List<TodoModel> findAllTodosByUsername(String username) {
         UserModel user = this.getUser(username);
-        return todoRepository.findAll(TodoSpecifications.hasUser(user.getUsername()))
+        return todoRepository.findAll(Specification.where(hasUser(user.getUsername())))
                 .stream()
                 .map(Todo::toModel)
                 .collect(Collectors.toList());
@@ -37,7 +39,8 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public List<TodoModel> findAllTodosByUsername(String username, boolean isCompleted) {
         UserModel user = this.getUser(username);
-        Specification<Todo> specification = TodoSpecifications.hasUser(user.getUsername())
+        Specification<Todo> specification = Specification
+                .where(hasUser(user.getUsername()))
                 .and(TodoSpecifications.isCompletedTodo(isCompleted));
         return todoRepository.findAll(specification)
                 .stream()
