@@ -1,6 +1,5 @@
 package com.example.todomanagement.services;
 
-import com.example.todomanagement.jpa.entities.User;
 import com.example.todomanagement.models.TodoModel;
 import com.example.todomanagement.models.UserModel;
 
@@ -9,7 +8,9 @@ import java.util.Optional;
 
 public interface TodoService {
 
-    List<TodoModel> getAllTodos(UserModel userModel);
+    List<TodoModel> findAllTodosByUsername(String username);
 
-    Optional<TodoModel> getTodo(long id, UserModel userModel);
+    List<TodoModel> findAllTodosByUsername(String username, boolean isCompleted);
+
+    Optional<TodoModel> findTodo(long id, String username);
 }

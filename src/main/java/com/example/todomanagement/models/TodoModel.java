@@ -14,4 +14,5 @@ public class TodoModel {
     private long id;
     private String description;
     private LocalDate targetDate;
+    private boolean isCompleted;
 }

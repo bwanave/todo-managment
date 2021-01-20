@@ -1,9 +1,9 @@
 package com.example.todomanagement.jpa.entities;
 
 import com.example.todomanagement.models.UserModel;
+import com.example.todomanagement.models.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import java.time.ZonedDateTime;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class User {
@@ -31,9 +30,10 @@ public class User {
     private String fullName;
 
     @Column(nullable = false)
-    private Role role;
+    private UserRole role;
 
-    private boolean active = true;
+    @Column
+    private boolean active;
 
     @Column(nullable = false)
     private ZonedDateTime creationTime;
@@ -55,8 +55,7 @@ public class User {
         return userModel;
     }
 
-    public enum Role {
-        NORMAL,
-        ADMIN
+    public User() {
+        this.active = true;
     }
 }

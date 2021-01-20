@@ -24,6 +24,9 @@ public class Todo {
     @Column(nullable = false)
     private LocalDate targetDate;
 
+    @Column(nullable = false)
+    private boolean isCompleted;
+
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -33,6 +36,7 @@ public class Todo {
         todoModel.setId(this.id);
         todoModel.setDescription(this.description);
         todoModel.setTargetDate(this.targetDate);
+        todoModel.setCompleted(this.isCompleted);
         return todoModel;
     }
 }
