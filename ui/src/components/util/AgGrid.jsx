@@ -19,8 +19,7 @@ class AgGrid extends Component {
                     filterParams: {
                         buttons: ['apply', 'clear', 'reset'],
                         closeOnApply: true
-                    },
-                    cellStyle: { textAlign: 'left', 'vertical-align': 'middle' }
+                    }
                 },
                 columnTypes: {
                     numberColumn: { width: 130, filter: 'agNumberColumnFilter' },

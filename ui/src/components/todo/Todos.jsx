@@ -29,6 +29,10 @@ class Todos extends Component {
             { headerName: 'Is Completed?', colId: 'completed', field: 'completed' },
             { headerName: 'Action', colId: 'action', cellRenderer: 'crudAction', maxWidth: 200, filter: false, sortable: false }];
         const todos = [
+            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
+            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
+            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
+            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
             { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false }];
 
         return (

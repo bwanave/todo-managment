@@ -1,0 +1,17 @@
+/* Remove borders around ag-grid */
+.ag-root-wrapper {
+    border: none !important;
+}
+
+/* Display cell content at left side horizontaly and center vertically*/
+.ag-row .ag-cell {
+    display: flex !important;
+    justify-content: left !important;
+    align-items: center !important;
+}
+
+.ag-header {
+    border-top: solid 1px !important;
+    border-bottom: solid 1px !important;
+    border-color: var(--ag-border-color, #babfc7) !important;
+}
