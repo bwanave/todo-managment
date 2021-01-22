@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import AuthenticationService from '../apis/AuthenticationService';
+import AuthenticationApis from '../apis/AuthenticationApis';
 
 class Nav extends Component {
     render() {
-        if (AuthenticationService.isUserLoggedIn())
+        if (AuthenticationApis.isUserLoggedIn())
             return this.renderNavbar()
         else
             return "";

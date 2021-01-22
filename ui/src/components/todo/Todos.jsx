@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import AgGrid from '../util/AgGrid';
 import CrudAction from '../util/CrudAction';
 import moment from 'moment'
+import TodoApis from '../../apis/TodoApis';
+import AuthenticationApis from '../../apis/AuthenticationApis';
 
 class Todos extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            todos: []
+        }
         this.add = this.add.bind(this);
+    }
+
+    componentDidMount() {
+        TodoApis.getTodos(AuthenticationApis.loggedInUser())
+            .then(response => this.setState({ todos: response.data }))
+            .catch(error => console.log('Failed to get todos'))
     }
 
     add() {
@@ -24,17 +35,29 @@ class Todos extends Component {
 
     render() {
         const columnDefs = [
-            { headerName: 'Description', colId: 'description', field: 'description' },
-            { headerName: 'Target Date', colId: 'targetDate', field: 'targetDate' },
-            { headerName: 'Is Completed?', colId: 'completed', field: 'completed' },
-            { headerName: 'Action', colId: 'action', cellRenderer: 'crudAction', maxWidth: 200, filter: false, sortable: false }];
-        const todos = [
-            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
-            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
-            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
-            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false },
-            { id: 1, description: 'Learn ReactJs UI technology', targetDate: moment(new Date()).format("YYYY-MM-DD"), completed: false }];
-
+            {
+                headerName: 'Description',
+                colId: 'description',
+                field: 'description'
+            },
+            {
+                headerName: 'Target Date',
+                colId: 'targetDate',
+                valueGetter: params => moment(params.data.targetDate).format("DD-MMM-YYYY")
+            },
+            {
+                headerName: 'Is Completed?',
+                colId: 'completed',
+                field: 'completed'
+            },
+            {
+                headerName: 'Action',
+                colId: 'action',
+                cellRenderer: 'crudAction',
+                maxWidth: 200,
+                filter: false,
+                sortable: false
+            }];
         return (
             <>
                 <br />
@@ -44,7 +67,7 @@ class Todos extends Component {
                     <button className="btn btn-dark float-right" title="Add the new Todo item into list" onClick={this.add}> Add New Todo </button>
                 </div>
                 <AgGrid columnDefs={columnDefs}
-                    rowData={todos}
+                    rowData={this.state.todos}
                     context={{ parentComponent: this }}
                     frameworkComponents={{ crudAction: CrudAction }} />
             </>

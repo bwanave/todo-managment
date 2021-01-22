@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthenticationService from '../apis/AuthenticationService';
+import AuthenticationApis from '../apis/AuthenticationApis';
 
 class Login extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class Login extends Component {
     handleLogin(event) {
         event.preventDefault();
         if (this.state.username === 'Balaji' && this.state.password === 'dummy') {
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+            AuthenticationApis.registerSuccessfulLogin(this.state.username, this.state.password);
             this.props.history.push(`/home/${this.state.username}`);
         }
         else {
