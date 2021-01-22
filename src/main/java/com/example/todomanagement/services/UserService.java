@@ -1,10 +1,12 @@
 package com.example.todomanagement.services;
 
-import com.example.todomanagement.models.UserModel;
+import com.example.todomanagement.jpa.entities.User;
 
 import java.util.Optional;
 
 public interface UserService {
 
-    Optional<UserModel> getUser(String username);
+    User getUser(String username);
+
+    Optional<User> findUser(String username);
 }

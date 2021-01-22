@@ -1,16 +1,21 @@
 package com.example.todomanagement.services;
 
-import com.example.todomanagement.models.TodoModel;
-import com.example.todomanagement.models.UserModel;
+import com.example.todomanagement.jpa.entities.Todo;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TodoService {
 
-    List<TodoModel> findAllTodosByUsername(String username);
+    List<Todo> findAllTodosByUsername(String username);
 
-    List<TodoModel> findAllTodosByUsername(String username, boolean isCompleted);
+    List<Todo> findAllTodosByUsername(String username, boolean isCompleted);
 
-    Optional<TodoModel> findTodo(long id, String username);
+    Optional<Todo> findTodo(long id, String username);
+
+    Todo createTodo(String username, Todo todo);
+
+    Todo updateTodo(Todo todo, Todo oldTodo);
+
+    Optional<Todo> deleteTodo(String username, long id);
 }
